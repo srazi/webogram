@@ -8,3 +8,8 @@ This is a fork of official [Webogram](https://github.com/zhukov/webogram)
 
 ##  Online Test
 It's hosted by Github pages: [Unofficial Webogram](https://srazi.github.io/webogram)
+
+## LICENSE
+See [here](https://raw.githubusercontent.com/zhukov/webogram/master/LICENSE).
+
+**USE IT AT YOUR OWN RISK!**
