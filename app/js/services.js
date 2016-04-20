@@ -1046,6 +1046,9 @@ angular.module('myApp.services', ['myApp.i18n', 'izhukov.utils'])
           userFull.user.first_name = override.first_name;
           userFull.user.last_name = override.last_name;
         }
+        if (override.about) {
+          userFull.about = override.about;
+        }
         AppUsersManager.saveApiUser(userFull.user);
       } else {
         AppUsersManager.saveApiUser(userFull.user, true);

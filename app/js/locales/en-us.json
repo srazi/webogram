@@ -271,6 +271,7 @@
 
 	"contact_edit_modal_first_name": "First name",
 	"contact_edit_modal_last_name": "Last name",
+	"contact_edit_modal_last_about": "About",
 	"contact_edit_modal_title": "Edit contact",
 	"contact_edit_modal_submit": "Save",
 	"contact_edit_modal_submit_active": "Saving...",

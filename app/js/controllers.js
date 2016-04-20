@@ -4010,21 +4010,39 @@ angular.module('myApp.controllers', ['myApp.i18n'])
     };
   })
 
-  .controller('ProfileEditModalController', function ($scope,  $modalInstance, AppUsersManager, MtpApiManager) {
+  .controller('ProfileEditModalController', function ($scope,  $modalInstance, AppUsersManager, AppProfileManager, MtpApiManager) {
 
     $scope.profile = {};
     $scope.error = {};
 
     MtpApiManager.getUserID().then(function (id) {
+      $scope.userID = id;
       $scope.profile = AppUsersManager.getUser(id);
+
+      AppProfileManager.getProfile($scope.userID, $scope.profile).then(function (userFull) {
+        $scope.profile.about = userFull.about;
+      });
     });
 
     $scope.updateProfile = function () {
       $scope.profile.updating = true;
 
+      var flags = 0;
+      if ($scope.profile.first_name) {
+        flags |= 1;
+      }
+      if ($scope.profile.last_name) {
+        flags |= 2;
+      }
+      if ($scope.profile.about) {
+        flags |= 4;
+      }
+
       MtpApiManager.invokeApi('account.updateProfile', {
+        flags: flags,
         first_name: $scope.profile.first_name || '',
-        last_name: $scope.profile.last_name || ''
+        last_name: $scope.profile.last_name || '',
+        about: $scope.profile.about || ''
       }).then(function (user) {
         $scope.error = {};
         AppUsersManager.saveApiUser(user);
